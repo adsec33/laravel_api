@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GeolocationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,5 +40,13 @@ Route::group(['prefix' => 'geo_locations'], function () {
         Route::put('/{id}', 'update');
 
         Route::delete('/{id}', 'delete');
+    });
+});
+
+Route::group(['prefix' => 'searches'], function () {
+    Route::controller(SearchController::class)->group(function () {
+
+        Route::post('/', 'store');
+        Route::get('/', 'index');
     });
 });

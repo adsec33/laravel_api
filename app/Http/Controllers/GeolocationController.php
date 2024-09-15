@@ -9,21 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class GeolocationController extends Controller
 {
-    // public function index()
-    // {
-    //     $profile =  DB::table('users')
-    //         ->join('profiles', 'users.user_id', '=', 'profiles.user_id')
-    //         ->get()->map(function ($row) {
-    //             $row->password =  "";
-    //             return  $row;
-    //         });
-    //
-    //     return response()->json([
-    //         'message' => 'success',
-    //         'data' => $profile,
-    //     ], 201);
-    // }
-
     public function store(Request $request)
     {
         $user = $request->user('api');
