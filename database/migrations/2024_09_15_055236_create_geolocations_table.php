@@ -12,8 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiles', function (Blueprint $table) {
-            $table->id('profile_id');
+        Schema::create('geolocations', function (Blueprint $table) {
+            $table->id('geo_location_id');
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
@@ -21,12 +21,16 @@ return new class extends Migration
                 ->on('users')
                 ->onDelete('cascade');
 
-            $table->string('last_name', 50);
-            $table->string('first_name', 100);
-            $table->string('middle_name', 50)->nullable();
-            $table->date('date_of_birth')->default(null);
-            $table->enum('sex', array('male', 'female')); // admin, user, faculty, staff, teacher
-            $table->string('full_address', 150);
+            $table->string('ip', 50);
+            $table->string('hostname', 150);
+            $table->string('city', 50);
+            $table->string('region', 50);
+            $table->string('country', 50);
+            $table->string('loc', 50);
+            $table->string('org', 50);
+            $table->string('postal', 50);
+            $table->string('time_zone', 150);
+            $table->string('readme', 150)->nullable();
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();
@@ -38,6 +42,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('geolocations');
     }
 };

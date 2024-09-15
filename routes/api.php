@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\GeolocationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -29,17 +29,14 @@ Route::group(['prefix' => 'users'], function () {
     });
 });
 
-Route::group(['prefix' => 'profiles'], function () {
-    Route::controller(ProfileController::class)->group(function () {
+Route::group(['prefix' => 'geo_locations'], function () {
+    Route::controller(GeolocationController::class)->group(function () {
         Route::get('/', 'index');
-    });
-});
-
-Route::group(['prefix' => 'posts'], function () {
-    Route::controller(PostController::class)->group(function () {
-        Route::get('/', 'index');
+        Route::get('/{srch}', 'search_geolocation');
 
         Route::post('/', 'store');
+
+        Route::put('/{id}', 'update');
 
         Route::delete('/{id}', 'delete');
     });
